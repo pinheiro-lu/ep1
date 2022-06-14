@@ -40,7 +40,20 @@ int milhares;
 */
 void separaNumero(int valor){
 
-	/* IMPLEMENTE SEU CODIGO AQUI */
+	if (valor < 0 || valor > 9999) {
+		unidades = -1;
+		dezenas = -1;
+		centenas = -1;
+		milhares = -1;
+	} else {
+		unidades = valor % 10;
+		valor /= 10;
+		dezenas = valor % 10;
+		valor /= 10;
+		centenas = valor % 10;
+		valor /= 10;
+		milhares = valor % 10;
+	}
 
 }
 
@@ -109,7 +122,7 @@ int somaprimosdegermain(int inicio, int fim, int passo){
 
 	/* IMPLEMENTE SEU CODIGO AQUI */
 
-	return soma;
+	//return soma;
 }
 
 
