@@ -70,13 +70,24 @@ void separaNumero(int valor){
 	Parametros:
 	pA: população do país A
 	taxaA: taxa de crescimento de A em porcentagem
-	pB: população do país A
+	pB: população do país B
 	taxaB: taxa de crescimento de B em porcentagem
 */
 int ultrapassagem(int popA, double taxaA, int popB, double taxaB){
    int anos = 0;
-	/* IMPLEMENTE SEU CODIGO AQUI */
-
+   
+   if (popA < 0 || taxaA < 0 || popB < 0 || taxaB < 0)
+   	return -1;
+   if (popA > popB || taxaA <= taxaB)
+   	return -1;
+   
+   while (popA < popB) {
+   	popA = popA + popA * taxaA/100;
+   	popB = popB + popB * taxaB/100;
+   	anos++;
+   }
+   
+   return anos;
 }
 
 
