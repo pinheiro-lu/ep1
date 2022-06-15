@@ -130,10 +130,33 @@ int ultrapassagem(int popA, double taxaA, int popB, double taxaB){
 
 
 int somaprimosdegermain(int inicio, int fim, int passo){
-
-	/* IMPLEMENTE SEU CODIGO AQUI */
-
-	//return soma;
+	int soma = 0, primo = 1, germain;
+	
+	if (inicio <= 0 || fim <= 0 || passo <= 0)
+		return -1;
+		
+	if (fim < inicio)
+		return -1;
+		
+	while (inicio < fim) { // verifica os primos de inicio ao fim
+		for (int i = 2; i < inicio; i++) { // verifica se inicio é primo
+			if (inicio % i == 0) {
+				primo = 0;
+				break;
+			} 
+		}
+		if (primo) { // se inicio é primo
+			germain = inicio * 2 + 1;
+			for (int i = 2; i < germain; i++) { // verifica se germain é primo
+				if (germain % i == 0) {
+					primo = 0;
+					break;
+				} else soma += germain;
+			}
+		}
+		inicio += passo; // verifica o proximo numero de acordo com o passo
+	}	
+	return soma;
 }
 
 
