@@ -127,10 +127,18 @@ int ultrapassagem(int popA, double taxaA, int popB, double taxaB){
 		passo - Variacao aplicada a cada valor a partir do valor de inicio
 */
 
+int primo (int n) { // 0 = não primo; 1 = primo
+	if (n == 1) return 0;
 
+	for (int i = 2; i < n; i++) {
+		if (n % i == 0) return 0;
+	}
+	
+	return 1;
+}
 
 int somaprimosdegermain(int inicio, int fim, int passo){
-	int soma = 0, primo = 1, germain;
+	int soma = 0;
 	
 	if (inicio <= 0 || fim <= 0 || passo <= 0)
 		return -1;
@@ -138,23 +146,11 @@ int somaprimosdegermain(int inicio, int fim, int passo){
 	if (fim < inicio)
 		return -1;
 		
-	while (inicio < fim) { // verifica os primos de inicio ao fim
-		for (int i = 2; i < inicio; i++) { // verifica se inicio é primo
-			if (inicio % i == 0) {
-				primo = 0;
-				break;
-			} 
-		}
-		if (primo) { // se inicio é primo
-			germain = inicio * 2 + 1;
-			for (int i = 2; i < germain; i++) { // verifica se germain é primo
-				if (germain % i == 0) {
-					primo = 0;
-					break;
-				} else soma += germain;
-			}
-		}
-		inicio += passo; // verifica o proximo numero de acordo com o passo
+	while (inicio < fim) { // de n = inicio a n < fim, verifica se n é primo de germain
+		if (primo (inicio)) // se n for primo, verifica se 2n+1 também é
+			if (primo (2 * inicio + 1))
+				soma += inicio;
+		inicio += passo;
 	}	
 	return soma;
 }
@@ -185,10 +181,23 @@ int somaprimosdegermain(int inicio, int fim, int passo){
 		n - inteiro positivo
 
 */
+
+double expneg1 (long n) { // calcula (-1)^n
+	if (n % 2 == 0) return 1;
+		else return -1;
+}
+
 double somasequencia(long n){
+	double soma = 0;
+	long i;
 
-	/* IMPLEMENTE SEU CODIGO AQUI */
-
+	if (n <= 0) return -1;
+	
+	for (i = 1; i <= n; i++) { //somar os números de i = 1 a i = n
+		soma += expneg1(i + 1) / i;
+	}
+	
+	return soma;
 	}
 
 
