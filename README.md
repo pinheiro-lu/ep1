@@ -6,3 +6,5 @@ Neste repositório são implementadas as seguintes funções, destinadas à conc
 - Função de separação de milhares, centenas, dezenas e unidades de um número entre 0 e 9999;
 - Função de cálculo de anos necessários para a ultrapassagem de uma população em relação a outra;
 - Função de verificar a soma dos números primos de germain dentro de um intervalo delimitado por um passo;
+- Função de realizar a soma de uma sequência do tipo (-1)^(i+1)/i de i = 1 a i = n;
+- Função de calcular o fatorial de certo número.

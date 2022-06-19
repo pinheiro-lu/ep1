@@ -75,15 +75,20 @@ void separaNumero(int valor){
 */
 int ultrapassagem(int popA, double taxaA, int popB, double taxaB){
    int anos = 0;
+   double popdoubleA, popdoubleB;
    
    if (popA < 0 || taxaA < 0 || popB < 0 || taxaB < 0)
    	return -1;
    if (popA > popB || taxaA <= taxaB)
    	return -1;
    
-   while (popA < popB) {
-   	popA = popA + popA * taxaA/100;
-   	popB = popB + popB * taxaB/100;
+   // transforma as populações em double para maior precisão nos cálculos
+   popdoubleA = (double) popA;  
+   popdoubleB = (double) popB;
+   
+   while (popdoubleA < popdoubleB) {
+   	popdoubleA = popdoubleA + popdoubleA * taxaA/100;
+   	popdoubleB = popdoubleB + popdoubleB * taxaB/100;
    	anos++;
    }
    
@@ -182,7 +187,7 @@ int somaprimosdegermain(int inicio, int fim, int passo){
 
 */
 
-double expneg1 (long n) { // calcula (-1)^n
+int expneg1 (long n) { // calcula (-1)^n
 	if (n % 2 == 0) return 1;
 		else return -1;
 }
@@ -194,7 +199,7 @@ double somasequencia(long n){
 	if (n <= 0) return -1;
 	
 	for (i = 1; i <= n; i++) { //somar os números de i = 1 a i = n
-		soma += expneg1(i + 1) / i;
+		soma += (double) expneg1(i + 1) / i;
 	}
 	
 	return soma;
@@ -215,8 +220,18 @@ double somasequencia(long n){
 */
 
 long fatorial(int n){
+	int i = 1;
+	long produto = 1;
 
-	/* IMPLEMENTE SEU CODIGO AQUI */
+	if (n < 0) return -1;
+	
+	do {
+		produto *= i;
+		
+		i++;	
+	} while (i <= n);
+	
+	return produto;
 
 }
 
@@ -271,6 +286,15 @@ int main() {
 
 	printf("Taxa A: %.2f; Populacao A: %i; Taxa B: %.2f; Populacao B: %i; Anos: %i\n\n", taxaA, popA,\
 	taxaB, popB, ultrapassagem(popA, taxaA, popB, taxaB));
+	
+	taxaA = 2; // % de crescimento
+	taxaB = 1.5;
+
+	popA = 100;
+	popB = 102;
+
+	printf("Taxa A: %.2f; Populacao A: %i; Taxa B: %.2f; Populacao B: %i; Anos: %i\n\n", taxaA, popA,\
+	taxaB, popB, ultrapassagem(popA, taxaA, popB, taxaB));
 
 	taxaA = 2; // % de crescimento
 	taxaB = 1.5;
@@ -321,6 +345,16 @@ int main() {
 	inicio = 1;
 	fim = 30;
 	passo = 1;
+	printf("Inicio: %i; Fim: %i; Passo: %i; Resultado: %i\n\n", inicio, fim, passo, somaprimosdegermain(inicio, fim, passo));
+	
+	inicio = 1;
+	fim = 30;
+	passo = 2;
+	printf("Inicio: %i; Fim: %i; Passo: %i; Resultado: %i\n\n", inicio, fim, passo, somaprimosdegermain(inicio, fim, passo));
+	
+	inicio = 1;
+	fim = 30;
+	passo = 3;
 	printf("Inicio: %i; Fim: %i; Passo: %i; Resultado: %i\n\n", inicio, fim, passo, somaprimosdegermain(inicio, fim, passo));
 
 	/* Exemplos de testes para a função somasequencia:  */
